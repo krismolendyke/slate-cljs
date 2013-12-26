@@ -1,7 +1,5 @@
 (ns slate-cljs.slate)
 
-(.configAll js/S (js-obj "keyboardLayout" "dvorak"))
-
 (defn bind
   "Bind key to operation."
   [key op]
@@ -19,6 +17,8 @@
   (let [args (js-obj "direction" "left"
                      "style" "bar-resize:screenSizeX/2.5")]
     (.doOperation win (.op js/S "push" args))))
+
+(.configAll js/S (js-obj "keyboardLayout" "dvorak"))
 
 (bind "r" (.op js/S "relaunch"))
 (bind "right" (fn [win] (push-right win)))
