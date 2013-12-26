@@ -6,6 +6,11 @@
   (let [modal ":ctrl,alt,cmd,space"]
     (.bind js/S (str key modal) op)))
 
+(defn bind-win
+  [key win-op]
+  (let [modal ":ctrl,alt,cmd,space"]
+    (.bind js/S (str key modal) (fn [win] (win-op win)))))
+
 (defn push-right
   [win]
   (let [args (js-obj "direction" "right"
@@ -21,5 +26,6 @@
 (.configAll js/S (js-obj "keyboardLayout" "dvorak"))
 
 (bind "r" (.op js/S "relaunch"))
-(bind "right" (fn [win] (push-right win)))
-(bind "left" (fn [win] (push-left win)))
+
+(bind-win "right" push-right)
+(bind-win "left" push-left)
