@@ -17,8 +17,8 @@
 
 (defn push
   [win direction style]
-  (.doOperation win (.op js/S "push" (js-obj "direction" direction
-                                             "style" style))))
+  (let [args (clj->js {:direction direction :style style})]
+    (.doOperation win (.op js/S "push" args))))
 
 (defn push-right
   [win]
