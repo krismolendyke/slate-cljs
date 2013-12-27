@@ -1,15 +1,18 @@
 (ns slate-cljs.slate)
 
+(defn key->modal
+  "Append the modal key to the given key."
+  [key]
+  (str key ":ctrl,alt,cmd,space"))
+
 (defn bind
   "Bind key to operation."
   [key op]
-  (let [modal ":ctrl,alt,cmd,space"]
-    (.bind js/S (str key modal) op)))
+  (.bind js/S (key->modal key) op))
 
 (defn bind-win
   [key win-op]
-  (let [modal ":ctrl,alt,cmd,space"]
-    (.bind js/S (str key modal) (fn [win] (win-op win)))))
+  (.bind js/S (key->modal key) (fn [win] (win-op win))))
 
 (defn push
   [win direction style]
