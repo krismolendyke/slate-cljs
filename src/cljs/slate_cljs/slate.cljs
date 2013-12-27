@@ -26,11 +26,11 @@
 
 (defn move-center
   [win]
-  (.doOperation win (.op js/S "move"
-                         (js-obj "x" "(screenSizeX / 2) - (windowSizeX / 2)"
-                                 "y" "screenOriginY"
-                                 "width" "windowSizeX"
-                                 "height" "windowSizeY"))))
+  (let [args (clj->js {:x "(screenSizeX / 2) - (windowSizeX / 2)"
+                       :y "screenOriginY"
+                       :width "windowSizeX"
+                       :height "windowSizeY"})]
+    (.doOperation win (.op js/S "move" args))))
 
 (defn grid
   [win]
