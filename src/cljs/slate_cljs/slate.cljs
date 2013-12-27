@@ -42,7 +42,8 @@
   [win]
   (let [grids (clj->js
                {:grids {:1366x768 {:width 6 :height 2}
-                        :1680x1050 {:width 8 :height 2}}})]
+                        :1680x1050 {:width 8 :height 2}
+                        :1920x1080 {:width 8 :height 2}}})]
     (.doOperation win (.op js/S "grid" grids))))
 
 (.configAll js/S (js-obj "keyboardLayout" "dvorak"))
