@@ -11,17 +11,18 @@
   (let [modal ":ctrl,alt,cmd,space"]
     (.bind js/S (str key modal) (fn [win] (win-op win)))))
 
+(defn push
+  [win direction style]
+  (.doOperation win (.op js/S "push" (js-obj "direction" direction
+                                             "style" style))))
+
 (defn push-right
   [win]
-  (let [args (js-obj "direction" "right"
-                     "style" "bar-resize:screenSizeX/1.7")]
-    (.doOperation win (.op js/S "push" args))))
+  (push win "right" "bar-resize:screenSizeX/1.7"))
 
 (defn push-left
   [win]
-  (let [args (js-obj "direction" "left"
-                     "style" "bar-resize:screenSizeX/2.5")]
-    (.doOperation win (.op js/S "push" args))))
+  (push win "left" "bar-resize:screenSizeX/2.5"))
 
 (.configAll js/S (js-obj "keyboardLayout" "dvorak"))
 
