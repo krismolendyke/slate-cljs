@@ -18,11 +18,11 @@
 
 (defn push-right
   [win]
-  (push win "right" "bar-resize:screenSizeX/1.7"))
+  (push win "right" "bar-resize:screenSizeX / 1.7"))
 
 (defn push-left
   [win]
-  (push win "left" "bar-resize:screenSizeX/2.5"))
+  (push win "left" "bar-resize:screenSizeX / 2.5"))
 
 (defn move-center
   [win]
