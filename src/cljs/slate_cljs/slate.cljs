@@ -26,9 +26,11 @@
 
 (defn move-center
   [win]
-  (let [args (clj->js {:x "(screenSizeX / 2) - (windowSizeX / 2)"
+  (let [width "screenSizeX * 2/3"
+        x (str "(screenSizeX / 2) - ((" width ") / 2)")
+        args (clj->js {:x x
                        :y "screenOriginY"
-                       :width "windowSizeX"
+                       :width width
                        :height "windowSizeY"})]
     (.doOperation win (.op js/S "move" args))))
 
