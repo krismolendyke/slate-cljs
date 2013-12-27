@@ -32,6 +32,13 @@
                                  "width" "windowSizeX"
                                  "height" "windowSizeY"))))
 
+(defn grid
+  [win]
+  (let [grids (clj->js
+               {:grids {:1366x768 {:width 6 :height 2}
+                        :1680x1050 {:width 8 :height 2}}})]
+    (.doOperation win (.op js/S "grid" grids))))
+
 (.configAll js/S (js-obj "keyboardLayout" "dvorak"))
 
 (bind "r" (.op js/S "relaunch"))
@@ -39,3 +46,4 @@
 (bind-win "right" push-right)
 (bind-win "left" push-left)
 (bind-win "c" move-center)
+(bind-win "g" grid)
