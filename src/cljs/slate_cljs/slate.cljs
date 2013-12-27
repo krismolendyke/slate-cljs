@@ -11,6 +11,7 @@
   (.bind js/S (key->modal key) op))
 
 (defn bind-win
+  "Bind key to window operation."
   [key win-op]
   (.bind js/S (key->modal key) (fn [win] (win-op win))))
 
