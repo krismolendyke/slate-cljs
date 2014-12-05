@@ -39,7 +39,7 @@
         "(screenSizeX / 3)" "screenOriginY"
         "(screenSizeX / 3)" "windowSizeY"))
 
-(defn full
+(defn move-full
   [win]
   (move win
         "screenOriginX" "screenOriginY"
@@ -63,5 +63,5 @@
 (bind-win "right" push-right)
 (bind-win "left" push-left)
 (bind-win "c" move-center)
-(bind-win "f" full)
+(bind-win "f" move-full)
 (bind-win "g" grid)
