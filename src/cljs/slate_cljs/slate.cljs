@@ -37,7 +37,14 @@
   [win]
   (move win
         "(screenSizeX / 3)" "screenOriginY"
-        "(screenSizeX / 3)" "windowSizeY"))
+        "(screenSizeX / 3)" "screenSizeY"))
+
+(defn move-middle
+  [win]
+  (let [w "1300"]
+    (move win
+          (str "screenOriginX + ((screenSizeX - " w " ) / 2)") "screenOriginY"
+          w "screenSizeY")))
 
 (defn move-full
   [win]
@@ -62,6 +69,7 @@
 
 (bind-win "right" push-right)
 (bind-win "left" push-left)
+(bind-win "m" move-middle)
 (bind-win "c" move-center)
 (bind-win "f" move-full)
 (bind-win "g" grid)
