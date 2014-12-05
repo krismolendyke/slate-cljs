@@ -20,6 +20,11 @@
   (let [args (clj->js {:direction direction :style style})]
     (.doOperation win (.op js/S "push" args))))
 
+(defn move
+  [win x y w h]
+  (let [args (clj->js {:x x :y y :width w :height h})]
+    (.doOperation win (.op js/S "move" args))))
+
 (defn push-right
   [win]
   (push win "right" "bar-resize:screenSizeX / 3"))
@@ -30,11 +35,15 @@
 
 (defn move-center
   [win]
-  (.doOperation win (.op js/S "move"
-                         (clj->js {:x "(screenSizeX / 3)"
-                                   :y "screenOriginY"
-                                   :width "(screenSizeX / 3)"
-                                   :height "windowSizeY"}))))
+  (move win
+        "(screenSizeX / 3)" "screenOriginY"
+        "(screenSizeX / 3)" "windowSizeY"))
+
+(defn full
+  [win]
+  (move win
+        "screenOriginX" "screenOriginY"
+        "screenSizeX" "screenSizeY"))
 
 (defn grid
   [win]
@@ -54,4 +63,5 @@
 (bind-win "right" push-right)
 (bind-win "left" push-left)
 (bind-win "c" move-center)
+(bind-win "f" full)
 (bind-win "g" grid)
