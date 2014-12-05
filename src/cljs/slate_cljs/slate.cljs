@@ -22,29 +22,30 @@
 
 (defn push-right
   [win]
-  (push win "right" "bar-resize:screenSizeX / 1.7"))
+  (push win "right" "bar-resize:screenSizeX / 3"))
 
 (defn push-left
   [win]
-  (push win "left" "bar-resize:screenSizeX / 2.5"))
+  (push win "left" "bar-resize:screenSizeX / 3"))
 
 (defn move-center
   [win]
-  (let [width "1075"
-        x (str "(screenSizeX / 2) - ((" width ") / 2)")
-        args (clj->js {:x x
-                       :y "screenOriginY"
-                       :width width
-                       :height "windowSizeY"})]
-    (.doOperation win (.op js/S "move" args))))
+  (.doOperation win (.op js/S "move"
+                         (clj->js {:x "(screenSizeX / 3)"
+                                   :y "screenOriginY"
+                                   :width "(screenSizeX / 3)"
+                                   :height "windowSizeY"}))))
 
 (defn grid
   [win]
   (let [grids (clj->js
                {:grids {:1366x768  {:width 6 :height 2}
                         :1680x1050 {:width 8 :height 2}
-                        :1920x1080 {:width 8 :height 2}}})]
+                        :1920x1080 {:width 8 :height 2}
+                        :2560x1440 {:width 4 :height 4}}})]
     (.doOperation win (.op js/S "grid" grids))))
+
+(.log js/S (-> js/S .screen .isMain))
 
 (.configAll js/S (js-obj "keyboardLayout" "dvorak"))
 
