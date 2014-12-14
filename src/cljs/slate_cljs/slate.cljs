@@ -15,15 +15,20 @@
   [key win-op]
   (.bind js/S (key->modal key) (fn [win] (win-op win))))
 
+(defn doOp
+  "Do operation on window."
+  [win op args]
+  (.doOperation win (.op js/S op args)))
+
 (defn push
   [win direction style]
   (let [args (clj->js {:direction direction :style style})]
-    (.doOperation win (.op js/S "push" args))))
+    (doOp win "push" args)))
 
 (defn move
   [win x y w h]
   (let [args (clj->js {:x x :y y :width w :height h})]
-    (.doOperation win (.op js/S "move" args))))
+    (doOp win "move" args)))
 
 (defn push-right
   [win]
@@ -59,7 +64,7 @@
                         :1680x1050 {:width 8 :height 2}
                         :1920x1080 {:width 8 :height 2}
                         :2560x1440 {:width 4 :height 4}}})]
-    (.doOperation win (.op js/S "grid" grids))))
+    (doOp win "grid" grids)))
 
 (.configAll js/S (js-obj "keyboardLayout" "dvorak"))
 
