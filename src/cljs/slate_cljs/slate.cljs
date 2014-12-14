@@ -61,8 +61,6 @@
                         :2560x1440 {:width 4 :height 4}}})]
     (.doOperation win (.op js/S "grid" grids))))
 
-(.log js/S (-> js/S .screen .isMain))
-
 (.configAll js/S (js-obj "keyboardLayout" "dvorak"))
 
 (bind "r" (.op js/S "relaunch"))
