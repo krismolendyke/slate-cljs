@@ -34,9 +34,17 @@
   [win]
   (push win "right" "bar-resize:screenSizeX / 3"))
 
+(defn push-right-2
+  [win]
+  (push win "right" "bar-resize:screenSizeX / 2"))
+
 (defn push-left
   [win]
   (push win "left" "bar-resize:screenSizeX / 3"))
+
+(defn push-left-2
+  [win]
+  (push win "left" "bar-resize:screenSizeX / 2"))
 
 (defn move-center
   [win]
@@ -72,6 +80,8 @@
 
 (bind-win "right" push-right)
 (bind-win "left" push-left)
+(bind-win "1" push-left-2)
+(bind-win "2" push-right-2)
 (bind-win "m" move-middle)
 (bind-win "c" move-center)
 (bind-win "f" move-full)
